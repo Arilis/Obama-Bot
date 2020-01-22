@@ -2,12 +2,21 @@ import requests, os, discord, urllib, time
 from discord.ext import commands
 os.system('cls')
 
+if os.path.isdir('./logs') != True:
+    print('./logs was not found, creating directory\n')
+    try:
+        os.mkdir('./logs')
+    except Exception:
+        print('Failed to create ./logs directory.')
+else:
+    print('./logs was found, continuing\n')
+
 
 client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
-    print('Online.')
+    print('Obama Bot Online.')
     game = discord.Game('.talk | By ArilisDev')
     await client.change_presence(status=discord.Status.idle, activity=game)
 
@@ -49,6 +58,6 @@ async def talk(ctx, *args):
         print('Failed to upload/request file.')
     
 try:
-    client.run('bot token')
+    client.run('token')
 except Exception:
         print('Failed to start bot.')
